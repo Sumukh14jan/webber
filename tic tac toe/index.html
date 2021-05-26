@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="custom_att.js"></script>
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <h1 class="allblur" >Tic Tac Toe</h1>
+    <!-- <center><img src="images/grid.jpeg" alt="game" id="game" usemap="#boxes" class="game" oncontextmenu="return false;" ></center> -->
+    <center>
+    <div class="grid allblur" style="font-size:0;">
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box1');" id="box1" width=100>
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box2');" id="box2"  width=100>
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box3');" id="box3"  width=100><br>
+
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box4');" id="box4"  width=100>
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box5');" id="box5"  width=100>
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box6');" id="box6"  width=100><br>
+
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box7');" id="box7"  width=100>
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box8');" id="box8"  width=100>
+        <img src="images/square.png" alt="blah blah" class="images" onclick="box('box9');" id="box9"  width=100>
+    </div>
+    <button  onclick="start()" class="submit allblur">Start</button> <button class="restart allblur" disabled="disabled" onclick="clear;">Restart</button></center>
+    <p class="allblur"  id="display"></p><img src="images/cross.png" alt="" class="small"><img src="images/o.png" alt="" class="small">
+    <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+<div class="modal-content">
+  <div class="modal-header" id="modal-header">
+    <span class="close" onclick="sd();">&times;</span>
+    <h2 id="heading">Congratulations</h2>
+  </div>
+  <div class="modal-body">
+    <p id="p1" class="special"></p>
+    <p class="special">You can play again by <a class="special_link" onclick="location.reload();">Clicking Here</a></p>
+  </div>
+  <div class="modal-footer" id="modal-footer">
+    <h3>Hope you liked this game, don't forget to view <a href="https://gyansastra.blogspot.com">this</a> amazing site</h3>
+  </div>
+</div>
+</div>
+
+
+    <!-- <map name="boxes">
+                <area shape="rect" coords="0, 0, 100, 100" onclick="box('box1');" alt=" ">
+                <area shape="rect" coords="100, 0, 200, 100" onclick="box('box2');" alt=" ">
+                <area shape="rect" coords="200, 0, 300, 100" onclick="box('box3');" alt=" ">
+                <area shape="rect" coords="0, 100, 100, 200" onclick="box('box4');" alt=" ">
+                <area shape="rect" coords="100, 100, 200, 200" onclick="box('box5');" alt=" ">
+                <area shape="rect" coords="200, 100, 300, 200" onclick="box('box6');" alt=" ">
+                <area shape="rect" coords="0, 200, 100, 300" onclick="box('box7');" alt=" ">
+                <area shape="rect" coords="100, 200, 200, 300" onclick="box('box8');" alt=" ">
+                <area shape="rect" coords="200, 200, 300, 300" onclick="box('box9');" alt=" ">
+    </map> -->
+
+<!-- <center><canvas id="canvasArea" width="300" usemap="click" height="300" ></canvas></center>  -->
+    <button class="theme">Change Theme</button>
+    <pre><i>Created by
+    Sumukh khandelwal</i></pre>
+  <script src="script.js"></script>
+
+<!-- <img src="images/cross.png" alt="Cross"> -->
+<!-- </div> -->
+</body>
+</html>

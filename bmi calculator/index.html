@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script> 
+    <link rel="stylesheet" href="button ripple.css">
+    <script src="button ripple.js"></script>
+    <script src="acordian.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"> -->
+<!-- <script src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+<link rel="stylesheet" href="radio.css">
+    <link rel="stylesheet" href="style.css">
+<!-- <script src="try/script.js" type="module"></script> -->
+
+
+
+    <title>BMI Calculator</title>
+</head>
+<body class="dark-theme || light-theme">
+    <h1>BMI Calculator</h1>
+    <details><summary>You can know about bmi by clicking here</summary>
+    <p class="ans"><div class="content">BMI, also called as Body mass index is used to know that are you slim, obese or perfect. <strong>You can know your own BMI below.</strong></div></p>
+    </details>
+
+    <form method="post">
+
+        <label for="height">Height: </label>
+        <span class="input">
+        <input type="number" name="height" id="height" required min="0" max="210"></span>
+        <label id="height1">cm</label>
+        <label for="inn"></label>
+        <input type="number" name="height"class="hidden" id="inn" title="" min="0" max="12">
+        <label class="hidden">inches</label>
+        <fieldset><legend>Choose height unit</legend>You want <input type="radio" name="hei_unit" id="cm" value="cm" checked onclick='heightl.innerHTML = "cm";inches[0].style.display = "none";inches[1].style.display = "none";'><label for="cm">Cm</label> or <input type="radio" name="hei_unit" id="feet" value="feet" onclick='heightl.innerHTML = "feets";inches[0].style.display = "inline";inches[1].style.display = "inline";'><label for="feet">inches and feet</label></fieldset>
+        <input type="number" name="height" class="hidden">
+        <label for="weight">Weight: </label>
+        <input type="number" name="weight" id="weight"  min="2" max="150">
+        <label id="weightl" required>kg</label><br><fieldset><legend>Choose weight unit</legend>You want <input type="radio" name="wei_unit" id="kg" value="kg" checked onclick='weightl.innerHTML = "kg";'><label for="kg">kg</label> or <input type="radio" name="wei_unit" id="pound" value="pound"onclick='weightl.innerHTML = "pounds";'><label for="pound">Pounds</label></fieldset>
+        <center><div data-ripple="rgba(0,0,0, 0.4)" class="cell bg-primary" onclick="calculate();">
+        <p class="submit">Submit</p>
+        </div></center>
+        <input type="reset" id="reset">
+
+    </form>
+
+    <script>
+        document.querySelectorAll('details').forEach((el) => {
+  new Accordion(el);
+});
+    </script>
+
+    <iframe src="show/index.html" frameborder="0" id="hide" width="100%" height="510" title="result">Sorry but we can't show you your bmi as browser is not supported</iframe>
+
+    <h1 class="headsol"></h1>
+    <!-- <embed src="show/index.html" frameborder="0" id="hide" width="100%" height="510"> -->
+    <button class="theme">Change Theme</button>
+    <pre><i>Created by
+    Sumukh khandelwal</i></pre>
+    <script src="script.js"></script>
+</body>
+</html>
