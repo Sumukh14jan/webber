@@ -49,6 +49,9 @@ function calculate() {
     bmi = bmi.toFixed(1);
     iframe.style.display = "block";
     iframe.contentWindow.document.getElementById("Give").value = bmi*10;
+    if (bmi>147) {
+     iframe.contentWindow.document.getElementById("Give").value = 479;
+    } 
     setTimeout(() => {iframe.contentWindow.document.getElementById("SpeedCheck").click();}, 1000);
     bmi_show.style.display = "block";
     if (bmi<18.5) {
