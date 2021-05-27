@@ -66,3 +66,11 @@ var TxtType = function(el, toRotate, period) {
         css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
         document.body.appendChild(css);
     };
+
+window.addEventListener("scroll", e => {
+  // Dealing with Safari difference.
+  // look into scrollingElement https://caniuse.com/#feat=document-scrollingelement
+  let scrollTop = document.body.scrollTop ? document.body.scrollTop : document.documentElement.scrollTop; 
+  let newPos = scrollTop + "px";
+  document.documentElement.style.setProperty('--scrollPos', newPos);
+});

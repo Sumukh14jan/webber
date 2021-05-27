@@ -6,8 +6,17 @@ html{
     user-select: none;
 }
 
+body{
+        font-family: calibri,
+        "Times New Roman",
+        sans-serif;
+        font-size: 18px;
+}
+
 nav {
     font-family: calibri, 'Times New Roman', serif;
+    cursor: url('images/hover.png'),
+    auto;
 }
 
 ul {
@@ -26,8 +35,9 @@ li {
     position: relative;
     text-decoration: none;
     transition-duration: 0.5s;
-    display: inline-block;
 }
+
+
 
 li a {
     color: #fff;
@@ -36,7 +46,6 @@ li a {
 li:hover,
 li:focus-within {
     background: rgb(8, 112, 25);
-    cursor: pointer;
 }
 
 li:focus-within a {
@@ -74,6 +83,12 @@ ul li ul li {
     border: 2px solid white;
     color: #fff;
     font-size: 16px;
+    cursor: url('images/hover1.png'),
+    auto;
+}
+
+.theme:active{
+    cursor: url('images/hover1.png'),auto;
 }
 
 .theme:hover {
@@ -177,7 +192,7 @@ img{
         0 0 102px #0fa,
         0 0 151px #0fa;
 }
-.pulsate {
+body.dark-theme .pulsate {
     animation: pulsate 1.5s infinite alternate;
 }
 
@@ -210,4 +225,104 @@ img{
             0 0 80px #0fa;
 
     }
+}
+
+body.dark-theme .pulsate {
+    animation: pulsate 1.5s infinite alternate;
+}
+
+body.light-theme .pulsate {
+    animation: pulsate_light 1.5s infinite alternate;
+}
+@keyframes pulsate_light {
+
+    100% {
+
+        text-shadow:
+            0 0 4px rgb(7, 8, 68),
+            0 0 11px rgb(7, 8, 68),
+            0 0 19px rgb(7, 8, 68),
+            0 0 40px rgb(20, 71, 0),
+            0 0 80px rgb(20, 71, 0),
+            0 0 90px rgb(20, 71, 0),
+            0 0 100px rgb(20, 71, 0),
+            0 0 150px rgb(20, 71, 0);
+
+    }
+
+    0% {
+
+        text-shadow:
+            0 0 2px rgb(7, 8, 68),
+            0 0 4px rgb(7, 8, 68),
+            0 0 6px rgb(7, 8, 68),
+            0 0 10px rgb(20, 71, 0),
+            0 0 45px rgb(20, 71, 0),
+            0 0 55px rgb(20, 71, 0),
+            0 0 70px rgb(20, 71, 0),
+            0 0 80px rgb(20, 71, 0);
+
+    }
+}
+
+body.light-theme .neonText{
+    color: darkgoldenrod;
+}
+
+pre {
+    font-family: calibri,
+        "Times New Roman",
+        sans-serif;
+    font-size: 18px;
+}
+
+.center{
+    text-align: center;
+}
+
+.scroll {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/spectrum.svg);
+    background-repeat: repeat-x;
+    background-size: 100vw 0.2em;
+    background-position: left bottom 5px;
+}
+
+h2{
+    --offset: 400px;
+}
+
+h2:nth-of-type(2) {
+    background-position-x: calc(var(--offset) + var(--scrollPos));
+}
+
+html {
+    cursor: url('images/cursor1.png'), auto;
+}
+
+header{
+    cursor: url('images/hover1.png');
+}
+
+a{
+    cursor: url('images/hover1.png'), auto;
+}
+a:active{
+    cursor: url('images/click1.png'),auto;
+}
+
+.normal{
+    color: lightblue;
+    text-decoration: underline;
+}
+
+.normal:active {
+    color: rgb(17, 153, 199);
+}
+
+body.light-theme .normal {
+    color: darkblue;
+}
+
+body.light-theme .normal:active {
+    color: rgb(6, 6, 56);
 }

@@ -5,7 +5,12 @@ body{
     font-family: calibri, "Times New Roman", sans-serif;
     font-size: 18px;
 }
-
+pre{
+    font-family: calibri,
+    "Times New Roman",
+    sans-serif;
+    font-size: 18px;
+}
 
 @media (prefers-color-scheme: dark) {
     h1 {
