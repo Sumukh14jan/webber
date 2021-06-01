@@ -15,13 +15,14 @@ body{
 
 nav {
     font-family: calibri, 'Times New Roman', serif;
-    cursor: url('images/hover.png'),
-    auto;
+    cursor: url('images/hover.png'), auto;
 }
 
 ul {
     list-style: none;
-    display: inline;
+    display: flex;
+    align-items: flex-start;
+    align-content: center;
     margin: 0;
     padding-left: 0;
 }
@@ -30,7 +31,6 @@ li {
     color: #fff;
     background: rgb(3, 59, 12);
     display: block;
-    float: left;
     padding: 1rem;
     position: relative;
     text-decoration: none;
@@ -41,6 +41,7 @@ li {
 
 li a {
     color: #fff;
+    line-height: 1rem;
 }
 
 li:hover,
@@ -269,6 +270,10 @@ body.light-theme .neonText{
     color: darkgoldenrod;
 }
 
+body.light-theme {
+    cursor: default;
+}
+
 pre {
     font-family: calibri,
         "Times New Roman",
@@ -291,24 +296,18 @@ h2{
     --offset: 400px;
 }
 
-h2:nth-of-type(2) {
-    background-position-x: calc(var(--offset) + var(--scrollPos));
-}
-
 html {
     cursor: url('images/cursor1.png'), auto;
 }
 
 header{
-    cursor: url('images/hover1.png');
+    cursor: url('images/hover1.png'), auto;
 }
 
 a{
     cursor: url('images/hover1.png'), auto;
 }
-a:active{
-    cursor: url('images/click1.png'),auto;
-}
+
 
 .normal{
     color: lightblue;
@@ -325,4 +324,32 @@ body.light-theme .normal {
 
 body.light-theme .normal:active {
     color: rgb(6, 6, 56);
+}
+
+
+ .scroll{
+     width: 450px;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/spectrum.svg);
+    background-repeat: repeat-x;
+    background-size: 100vw 0.2em;
+    background-position: left bottom 5px;
+    background-position-x: var(--scrollPos);
+}
+
+a{
+    height: 500px;
+}
+
+.head_imp{
+    background: #146406;
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+body.light-theme .head_imp{
+    background: #177d06;
+    color: white;
 }
