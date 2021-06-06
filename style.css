@@ -139,7 +139,7 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-track {
     background: linear-gradient(90deg, #434343, #434343 1px, transparent 0, transparent)
 }
-
+logo
 body::-webkit-scrollbar-thumb {
     background: #5e5e5e;
     box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25),
@@ -170,8 +170,8 @@ body {
     line-height: 50px;
     height: 100px;
     position: absolute;
-    top: 100px;
-    left: 250px;
+    top: 120px;
+    left: 225px;
     font-size: 100px;
 }
 img{

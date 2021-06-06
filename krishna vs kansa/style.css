@@ -1,0 +1,344 @@
+
+
+.special_link{
+    color: #15860d;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+.special_link:active{
+    animation: specialLink 1s linear infinite alternate none;
+}
+
+@keyframes specialLink {
+    to{color: #071a06};
+}
+
+h1{
+    color: yellow;
+}
+
+.grid->img{
+    padding: 0 0 0 0;
+    margin: 0%;
+    
+}
+
+.submit{
+    color: white;
+    background-color: rgb(33, 63, 33);
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 100px;
+    animation: glow 2s linear 0s infinite alternate none;
+    /* animation-name: special;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; */
+
+}
+
+.restart:enabled{
+    color: white;
+    background-color: rgb(82, 5, 5);
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 100px;
+    animation: glow_red 2s linear 0s infinite alternate none;
+}
+
+.restart:disabled {
+    color: white;
+    background-color: rgb(110, 110, 110);
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 100px;
+}
+
+@keyframes glow_red {
+    from {border: 5px solid rgb(0, 0, 0);}
+    to {border: 5px solid rgb(88, 7, 41);}
+}
+.restart:enabled:hover{
+    animation: special1 2s linear 0s infinite alternate none;
+}
+@keyframes special1 {
+
+        to{color: rgb(202, 31, 117);}
+        to{background-color: rgb(88, 10, 10);}
+        to{border-radius: 5px;}
+        from{border-radius: 30px;}
+        from {border: 5px solid rgb(109, 18, 121);}
+        to {border: 5px solid rgb(213, 53, 228);}
+}
+
+.submit:hover{
+    animation: special 2s linear 0s infinite alternate none;
+}
+
+@keyframes glow {
+    from {border: 5px solid rgb(0, 0, 0);}
+    to {border: 5px solid green;}
+}
+@keyframes special {
+
+        to{color: rgb(98, 98, 93);}
+        to{background-color: rgb(104, 224, 104);}
+        to{border-radius: 5px;}
+        from{border-radius: 30px;}
+        from {border: 5px solid rgb(21, 74, 124);}
+        to {border: 5px solid rgb(12, 104, 88);}
+}
+
+#display{
+    color: white;
+}
+.small{
+    display: none;
+    width: 50px;
+    pointer-events: none;
+}
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    /* background-color: rgb(0, 0, 0); */
+    /* Fallback color */
+    /* background-color: rgba(0, 0, 0, 0.4); */
+    backdrop-filter: blur(7px);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+.special{
+    color: black;
+}
+
+
+/* img{
+
+} */
+/* img {
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    /* -moz-user-select: none;
+    /* Firefox all */
+    /* -ms-user-select: none; */
+    /* IE 10+ */
+    /* -o-user-select: none; */
+    /* user-select: none; */
+/* }  */
+
+.attention-component {
+    width: 100%;
+    padding: 20px;
+    max-width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+}
+
+.attention-component * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+.attention-component .inner {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .16), 0 1px 3px rgba(0, 0, 0, .13)
+}
+
+.attention-component .inner-container {
+    padding: 20px;
+    background-color: #fff
+}
+
+.attention-component .head {
+    padding: 10px 40px 10px 20px;
+    background-color: #094457
+}
+
+.attention-component .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+    cursor: pointer
+}
+
+.attention-component .close path:first-child {
+    fill: #fff
+}
+
+.attention-component .title {
+    font-size: 16px;
+    color: rgb(255, 255, 255)
+}
+
+.attention-component .content {
+    font-size: 14px
+}
+
+
+.attention-component .input {
+    width: 100%;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px
+}
+
+.attention-component .input:focus {
+    outline-offset: 0;
+}
+
+.attention-component .button {
+    padding: 10px 20px;
+    width: 50%;
+    display: block;
+    margin: 20px auto 0;
+    border: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #1a4e13;
+    color: #fff
+}
+
+.attention-component .button:hover {
+    padding: 10px 20px;
+    width: 50%;
+    display: block;
+    margin: 20px auto 0;
+    border: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #1d970d;
+    color: rgb(22, 20, 20)
+}
+
+.theme {
+    border-radius: 8px;
+    background: black;
+    border: 2px solid white;
+    color: #fff;
+    font-size: 16px;
+}
+
+.theme:hover {
+    background: rgb(1, 10, 53);
+    border: 2px solid rgb(10, 95, 129);
+    color: #fff;
+    font-size: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+    h1 {
+        color: yellow;
+    }
+
+    body {
+        color: white;
+        background-color: black;
+    }
+}
+
+body.dark-theme h1 {
+    color: yellow;
+}
+
+body.dark-theme {
+    color: white;
+    background-color: black;
+}
+
+body.light-theme h1 {
+    color: rgb(5, 73, 8);
+}
+
+body.light-theme {
+    background-color: white;
+    color: black;
+}
+.content{
+    color: black;
+}
+
+body{
+    user-select: none;
+}
