@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/robofriends/static/css/main.83892798.chunk.css",
-    "main.js": "/robofriends/static/js/main.5a832e0b.chunk.js",
-    "main.js.map": "/robofriends/static/js/main.5a832e0b.chunk.js.map",
-    "runtime-main.js": "/robofriends/static/js/runtime-main.c9902437.js",
-    "runtime-main.js.map": "/robofriends/static/js/runtime-main.c9902437.js.map",
-    "static/css/2.c1f4f5f4.chunk.css": "/robofriends/static/css/2.c1f4f5f4.chunk.css",
-    "static/js/2.7ea91817.chunk.js": "/robofriends/static/js/2.7ea91817.chunk.js",
-    "static/js/2.7ea91817.chunk.js.map": "/robofriends/static/js/2.7ea91817.chunk.js.map",
-    "index.html": "/robofriends/index.html",
-    "static/css/2.c1f4f5f4.chunk.css.map": "/robofriends/static/css/2.c1f4f5f4.chunk.css.map",
-    "static/css/main.83892798.chunk.css.map": "/robofriends/static/css/main.83892798.chunk.css.map",
-    "static/js/2.7ea91817.chunk.js.LICENSE.txt": "/robofriends/static/js/2.7ea91817.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/robofriends/static/media/SEGA.47b4bfa9.woff"
+    "main.css": "/robotworld/static/css/main.bb5578ea.chunk.css",
+    "main.js": "/robotworld/static/js/main.5a832e0b.chunk.js",
+    "main.js.map": "/robotworld/static/js/main.5a832e0b.chunk.js.map",
+    "runtime-main.js": "/robotworld/static/js/runtime-main.b1f98bae.js",
+    "runtime-main.js.map": "/robotworld/static/js/runtime-main.b1f98bae.js.map",
+    "static/css/2.c1f4f5f4.chunk.css": "/robotworld/static/css/2.c1f4f5f4.chunk.css",
+    "static/js/2.7ea91817.chunk.js": "/robotworld/static/js/2.7ea91817.chunk.js",
+    "static/js/2.7ea91817.chunk.js.map": "/robotworld/static/js/2.7ea91817.chunk.js.map",
+    "index.html": "/robotworld/index.html",
+    "static/css/2.c1f4f5f4.chunk.css.map": "/robotworld/static/css/2.c1f4f5f4.chunk.css.map",
+    "static/css/main.bb5578ea.chunk.css.map": "/robotworld/static/css/main.bb5578ea.chunk.css.map",
+    "static/js/2.7ea91817.chunk.js.LICENSE.txt": "/robotworld/static/js/2.7ea91817.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/robotworld/static/media/SEGA.47b4bfa9.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.c9902437.js",
+    "static/js/runtime-main.b1f98bae.js",
     "static/css/2.c1f4f5f4.chunk.css",
     "static/js/2.7ea91817.chunk.js",
-    "static/css/main.83892798.chunk.css",
+    "static/css/main.bb5578ea.chunk.css",
     "static/js/main.5a832e0b.chunk.js"
   ]
 }
