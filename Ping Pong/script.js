@@ -1,6 +1,6 @@
-const ball = document.getElementById('ball');
-const rod1 = document.getElementById('rod1');
-const rod2 = document.getElementById('rod2');
+var ball = document.getElementById('ball');
+var rod1 = document.getElementById('rod1');
+var rod2 = document.getElementById('rod2');
 
 
 const storeName = "PPName";
@@ -25,10 +25,14 @@ let windowWidth = window.innerWidth,
 
 (function () {
     rod = localStorage.getItem(storeName);
+    maxScore = localStorage.getItem(storeScore);
 
     if (rod === "null" || maxScore === "null") {
+        alert("This is the first time you are playing this game. LET'S START");
         maxScore = 0;
         rod = "Rod1"
+    } else {
+        alert(rod + " has maximum score of " + maxScore * 100);
     }
 
     resetBoard(rod);
