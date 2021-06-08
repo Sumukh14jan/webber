@@ -1,3 +1,5 @@
+
+
 const btn = document.querySelector(".theme");
 
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -100,5 +102,8 @@ function getOS() {
 }
 let os = getOS();
 document.querySelector(".scroll").innerHTML = `Hello ${os} user and welcome to webber`;
+
+
+
 
 
