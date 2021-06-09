@@ -83,17 +83,6 @@ nav ul li ul li {
     clear: both;
     width: 100%;
 }
-
-.theme:active{
-    cursor: url('images/hover1.png'),auto;
-}
-
-.theme:hover {
-    background: rgb(1, 10, 53);
-    border: 2px solid rgb(10, 95, 129);
-    color: #fff;
-    font-size: 16px;
-}
 @media (prefers-color-scheme: dark) {
     h1 {
         color: yellowgreen;
@@ -192,6 +181,11 @@ body {
     padding-top: 5em;
     padding-bottom:3em;
 }
+
+body.light-theme .logo{
+    color: black;
+}
+
 .logo{
     color: white;
     line-height: 50px;
@@ -399,3 +393,66 @@ body.light-theme .head_imp{
         display: inline;
     }
 }
+
+
+
+
+.dayNight {
+    cursor: pointer;
+}
+.dayNight input {
+    display: none;
+}
+.dayNight input + div {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    position: relative;
+    box-shadow: inset 16px -16px 0 0 #fff;
+    transform: scale(1) rotate(-2deg);
+    transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
+}
+.dayNight input + div:before {
+    content: "";
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: background 0.3s ease;
+}
+.dayNight input + div:after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: -4px 0 0 -4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0 -23px 0 #5628EE, 0 23px 0 #5628EE, 23px 0 0 #5628EE, -23px 0 0 #5628EE, 15px 15px 0 #5628EE, -15px 15px 0 #5628EE, 15px -15px 0 #5628EE, -15px -15px 0 #5628EE;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+.dayNight input:checked + div {
+    box-shadow: inset 32px -32px 0 0 #fff;
+    transform: scale(0.5) rotate(0deg);
+    transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
+}
+.dayNight input:checked + div:before {
+    background: #5628EE;
+    transition: background 0.3s ease 0.1s;
+}
+.dayNight input:checked + div:after {
+    transform: scale(1.5);
+    transition: transform 0.5s ease 0.15s;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px 0 0;
+}
+
+

@@ -1,12 +1,18 @@
-var ball = document.getElementById('ball');
-var rod1 = document.getElementById('rod1');
-var rod2 = document.getElementById('rod2');
+const ball = document.getElementById('ball');
+const rod1 = document.getElementById('rod1');
+const rod2 = document.getElementById('rod2');
+const r = document.querySelector(':root');
 
+function applycol() {
+    r.style.setProperty('--rod1col', document.querySelector('#rod1col').value);
+    r.style.setProperty('--rod2col', document.querySelector('#rod2col').value);
+    r.style.setProperty('--ballcol', document.querySelector('#ballcol').value);
+}
 
 const storeName = "PPName";
 const storeScore = "PPMaxScore";
-const rod1Name = "Rod 1";
-const rod2Name = "Rod 2";
+let rod1Name = "Rod 1";
+let rod2Name = "Rod 2";
 
 
 let score,
@@ -28,11 +34,9 @@ let windowWidth = window.innerWidth,
     maxScore = localStorage.getItem(storeScore);
 
     if (rod === "null" || maxScore === "null") {
-        alert("This is the first time you are playing this game. LET'S START");
         maxScore = 0;
         rod = "Rod1"
     } else {
-        alert(rod + " has maximum score of " + maxScore * 100);
     }
 
     resetBoard(rod);
@@ -99,6 +103,8 @@ window.addEventListener('keypress', function () {
 
         if (!gameOn) {
             gameOn = true;
+            rod1Name = prompt("Enter player 1 name");
+            rod2Name = prompt("Enter player 2 name");
             let ballRect = ball.getBoundingClientRect();
             let ballX = ballRect.x;
             let ballY = ballRect.y;
