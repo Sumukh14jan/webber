@@ -11,7 +11,7 @@
     height: 20px;
     background-color: var(--ballcol);
     position: fixed;
-    top: 20px;
+    top: 100px;
     left: 52.5%;
     border-radius: 50%;
 }
@@ -29,7 +29,7 @@
 
 #rod1 {
     background-color: var(--rod1col);
-    top: 0;
+    top: 75px;
 }
 
 #rod2 {
@@ -37,10 +37,13 @@
     bottom: 0;
 }
 a{
-    color: #19246a;
+    color: #6cee73;
 }
 
 html{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
@@ -83,4 +86,19 @@ body{
 
 h1{
     color:white;
+}
+
+.rod1, .rod2{
+    color: white;
+    position: fixed;
+    font-size: 20px;
+    font-weight: bold;
+}
+.rod1{
+    right: 20px;
+    top: 75px;
+}
+.rod2{
+    right: 20px;
+    bottom: 10px;
 }
