@@ -13,11 +13,11 @@ function applycol() {
             "                        <div class=\"padded\"><kbd>Right arrow(<span class=\"arrow\">➡</span>) or A</kbd>: Move player 1's rod to right.<br></div>\n" +
             "                        <div class=\"padded\"><kbd>Left arrow(<span class=\"arrow\">⬅</span>) or D</kbd>: Move player 1's rod to left.</div>"
     }else{
-        document.querySelector("#control").innerHTML = "<div class=\"padded\"><kbd>Right arrow(<span class=\"arrow\">➡</span>) or A</kbd>: Move player 1's rod to right.<br></div>\n" +
-            "<div class=\"padded\"><kbd>D</kbd>: Move player 2's rod to right.</div>\n" +
+        document.querySelector("#control").innerHTML = "<div class=\"padded\"><kbd>D</kbd>: Move player 1's rod to right.<br></div>\n" +
+            "<div class=\"padded\"><kbd>Right arrow(<span class=\"arrow\">➡</span>)</kbd>: Move player 2's rod to right.</div>\n" +
             "\n" +
-            "<div class=\"padded\"><kbd>Left arrow(<span class=\"arrow\">⬅</span>)</kbd>: Move player 1's rod to left.</div>\n" +
-            "<div class=\"padded\"><kbd>A</kbd>: Move player 2's rod to left.</div>"
+            "<div class=\"padded\"><kbd>A</kbd>: Move player 1's rod to left.</div>\n" +
+            "<div class=\"padded\"><kbd>Left arrow(<span class=\"arrow\">⬅</span>)</kbd>: Move player 2's rod to left.</div>"
     }
 }
 
@@ -80,7 +80,7 @@ function storeWin(rod, score) {
 
     clearInterval(movement);
     resetBoard(rod);
-    if(rod=="player1"){alert(rod + " wins with a score of " + (score1 * 100));}else{alert(rod + " wins with a score of " + (score * 100));}
+    if(rod==="player1"){alert(rod + " wins with a score of " + (score1 * 100));}else{alert(rod + " wins with a score of " + (score * 100));}
 
 }
 
