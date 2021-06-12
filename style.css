@@ -457,4 +457,6 @@ nav{
 footer p, footer em{
     color: white;
 }
-
+a:hover{
+    color:#fff;
+}
