@@ -1,0 +1,50 @@
+*{
+    z-index: 1;
+}
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:-1;
+    opacity: 0.5;
+}
+html{
+    background: black;
+}
+header{
+    width: 100%;
+    height: 100%;
+}
+.start-inst{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    font-family: Calibri, "Times New Roman", serif;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+button{
+    display: none;
+}
+canvas{
+    height: 100%;
+    width: 100%;
+    /*background: url("../img/background.png");*/
+}
+
+html{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+}
