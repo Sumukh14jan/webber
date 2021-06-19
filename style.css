@@ -596,7 +596,7 @@ body.light-theme .head_imp{
 
 .dayNight{
     position: absolute;
-    right: 5%;
+    right: 2px;
     top:100px;
 }
 
@@ -623,7 +623,7 @@ body.light-theme nav ul li a.active{
 
 .burger {
     position: absolute;
-    right:5%;
+    right:2px;
     display: block;
     cursor: pointer;
     z-index: 21;
@@ -678,4 +678,31 @@ body.light-theme .toggle .line3 {
 body.light-theme .nav-links{
     background: rgba(183, 183, 183, 0.6);
 }
-.burger span {background: #1a1a1a;}
+body.light-theme .burger span {background: #1a1a1a;}
+
+.projects {
+    width: 90%;
+    margin: auto;
+    min-height: 90vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    text-align: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.travelly, .elena {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 40rem;
+    flex: 1 1 40rem;
+}
