@@ -15,17 +15,31 @@ html {
     user-select: none;
     padding: 0 0;
 }
+li, button, label, input, a, p, span, h2 {
+    font-size: 2.5rem;
+}
 
+h3 {
+    font-size: 6rem;
+    padding: 2rem 0rem;
+}
 body{
     font-family: calibri,
     "Times New Roman",
     sans-serif;
-    font-size: 18px;
 }
 .main-head {
     width: 95%;
     margin: 0 0 0 auto;
 }
+@media screen and (max-width: 1332px){
+    html {
+        font-size: 53%;
+    }}
+@media screen and (max-width: 754px){
+html {
+    font-size: 45%;
+}}
 @media screen and (max-width: 1332px){
 nav {
     width: 100%;
@@ -33,7 +47,10 @@ nav {
 header{
     display: block;}
 nav .logo h1 {
-    margin: 2rem;
+    margin: 10px;
+}
+html {
+    font-size: 62.5%;
 }
 nav {
     display: -webkit-box;
@@ -92,7 +109,7 @@ nav ul {
 .active {
     background: #229240;
     color: white;
-    padding: 1rem 3rem;
+    padding: 15px 20px;
     border-radius: 2rem;
 }
 a {
@@ -153,8 +170,60 @@ ul {
     -webkit-animation: plant 1.5s ease infinite alternate 0.5s;
     animation: plant 1.5s ease infinite alternate 0.5s;
 }
-
-
+footer {
+    background: #154353;
+    color: white;
+    min-height: 10vh;
+    padding: 0% 5%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+footer h4 {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 40rem;
+    flex: 1 1 40rem;
+    font-size: 2rem;
+}
+footer ul li a{
+    font-size: 2rem;
+}
+footer ul li a:hover{
+    color: #237692;
+}
+footer ul li{
+    padding: 1.5rem;
+}
+footer em{
+    font-size:15px;
+}
+footer ul {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 40rem;
+    flex: 1 1 40rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
 @-webkit-keyframes me {
     from {
         -webkit-transform: rotateZ(-5deg);
@@ -440,6 +509,7 @@ body.light-theme .normal:active {
     font-size: 25px;
     width: 100%;
     border-radius: 20px;
+    margin: 2rem;
 }
 
 body.light-theme .head_imp{
@@ -458,11 +528,17 @@ body.light-theme .head_imp{
     .logo{
         display: none;
     }
+    .intro-text, .intro-images {
+        flex: 1 1 40px;
+    }
 }
 
 @media screen and (min-width: 768px){
     .logo{
         display: inline;
+    }
+    .intro-text, .intro-images {
+        flex: 1 1 20px;
     }
 }
 
@@ -521,4 +597,85 @@ body.light-theme .head_imp{
 .dayNight{
     position: absolute;
     right: 5%;
+    top:100px;
 }
+
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    flex: 1 1 20rem;
+}
+h1{
+    font-size: 2.5rem;
+}
+body.light-theme nav ul li a{
+    color: black;
+}
+body.light-theme nav ul li a.active{
+    color: white;
+}
+.burger,
+.menu-check {
+    display: none;
+}
+@media screen and (max-width: 842px){
+
+.burger {
+    position: absolute;
+    right:5%;
+    display: block;
+    cursor: pointer;
+    z-index: 21;
+}}
+.burger span {
+    padding: 0.2rem 2rem;
+    background: #e8e8e8;
+    margin: 0.5rem 0;
+    display: block;
+    transition: all 0.5s ease;
+}
+.nav-links a {
+    color: white;
+}
+@media screen and (max-width: 842px){
+.nav-links {
+    background: rgba(40, 40, 40,0.6);
+    z-index: 20;
+    backdrop-filter: blur(20px);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 1s ease;
+}}
+
+.nav-open {
+    transform: translateX(-100%);
+}
+
+.toggle .line1 {
+    transform: rotateZ(45deg) translateY(300%);
+    background: white;
+}
+.toggle .line2 {
+    opacity: 0;
+}
+.toggle .line3 {
+    transform: rotateZ(-45deg) translateY(-300%);
+    background: white;
+}
+body.light-theme .toggle .line1 {
+
+    background: black;
+}
+body.light-theme .toggle .line3 {
+    background: black;
+}
+body.light-theme .nav-links{
+    background: rgba(183, 183, 183, 0.6);
+}
+.burger span {background: #1a1a1a;}

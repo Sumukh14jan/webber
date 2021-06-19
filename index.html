@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <meta
+            name="description"
+            content="Amazing website to play, learn and develop."
+    />
+    <meta name="robots" content="index,follow" />
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico">
     <script src="https://kit-pro.fontawesome.com/releases/v5.10.1/js/pro.min.js" data-auto-fetch-svg></script>
     <link rel="stylesheet" href="animate.css"/>
@@ -15,12 +20,17 @@
             <img src="images/logo.png" alt="LOGO" width="100" height="100">
             <h1 class="logo-text">WEBBER</h1></div>
 
-        <ul>
+        <ul class="nav-links">
             <li><a href="https://sumukh14jan.github.io/webber" class="active">Home <i class="fad fa-home"> </i></a></li>
             <li class="dropdown"><a href="#">Projects</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="https://gyansastra.blogspot.com">Another Website</a></li>
         </ul>
+        <div class="burger">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+        </div>
         <label class="dayNight">
             <input onclick="change_theme();" type="checkbox">
             <div></div>
@@ -29,8 +39,8 @@
 </header>
 <body>
 <section class="intro">
-<div class="intro-text">
     <marquee behavior="alternate" class="head_imp" direction="right"  onmouseover="this.stop();" onmouseout="this.start();">Check out <a href="https://sumukh14jan.github.io/webber/Scrolling%20Plateformer/index.html" class="normal">this</a> amazing Mario like game</marquee>
+<div class="intro-text">
    <h2 class="center"><span class="scroll"> </span></h2>
     <h2 class="center">
         Here, You can
@@ -40,7 +50,7 @@
 </h2>
 <br>
     <p>I am working on web development(html, css and javascript) and I will we updating and adding content. So, stay tuned.Happy viewing my content. Also don't forget to view my another website(<a class="normal" href="https://gyansatra.blogspot.con">This one</a>)</p>
-
+</div>
     <div class="intro-images">
         <svg
                 width="799"
@@ -247,20 +257,19 @@
             </defs>
         </svg>
     </div>
-</div>
+
     <script src="script.js"></script>
 </section>
    <footer>
+       <h4>Webber &copy;2021</h4>
        <ul>
-           <li><a href="https://sumukh14jan.github.io/webber">Home</a></li>
+           <li><a href="projects.html">Projects</a></li>
            <li><a href="contact.html">Contact</a></li>
            <li><a href="https://gyansastra.blogspot.com">Another Website</a></li>
        </ul>
-       <div class="right-end">
        <em>Created by Sumukh Khandelwal </em>
            <p class="animate__animated animate__pulse animate__infinite">Made with Love <i class="fad fa-heart" style="color: red;"> </i></p>
-       <p>&copy;Webber 2021</p>
-       </div>
+
    </footer>
 </body>
 </html>
