@@ -531,6 +531,9 @@ body.light-theme .head_imp{
     .intro-text, .intro-images {
         flex: 1 1 40px;
     }
+    .intro{
+        flex-direction: column;
+    }
 }
 
 @media screen and (min-width: 768px){
@@ -539,6 +542,9 @@ body.light-theme .head_imp{
     }
     .intro-text, .intro-images {
         flex: 1 1 20px;
+    }
+    .intro{
+        flex-direction:row;
     }
 }
 
@@ -604,7 +610,7 @@ body.light-theme .head_imp{
 .nav-links {
     display: flex;
     justify-content: space-around;
-    flex: 1 1 20rem;
+
 }
 h1{
     font-size: 2.5rem;
@@ -627,7 +633,9 @@ body.light-theme nav ul li a.active{
     display: block;
     cursor: pointer;
     z-index: 21;
-}}
+}body.light-theme .nav-links{
+     background: rgba(183, 183, 183, 0.6);
+ }}
 .burger span {
     padding: 0.2rem 2rem;
     background: #e8e8e8;
@@ -635,9 +643,11 @@ body.light-theme nav ul li a.active{
     display: block;
     transition: all 0.5s ease;
 }
+
 .nav-links a {
     color: white;
 }
+
 @media screen and (max-width: 842px){
 .nav-links {
     background: rgba(40, 40, 40,0.6);
@@ -675,9 +685,7 @@ body.light-theme .toggle .line1 {
 body.light-theme .toggle .line3 {
     background: black;
 }
-body.light-theme .nav-links{
-    background: rgba(183, 183, 183, 0.6);
-}
+
 body.light-theme .burger span {background: #1a1a1a;}
 
 .projects {
@@ -705,4 +713,51 @@ body.light-theme .burger span {background: #1a1a1a;}
     -webkit-box-flex: 1;
     -ms-flex: 1 1 40rem;
     flex: 1 1 40rem;
+}
+.image{
+    height:100px;
+    /*width:100px;*/
+}
+.form-section {
+    min-height: 80vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin-top: 3rem;
+}
+.form-section form {
+    padding: 3rem 10rem;
+    -webkit-box-shadow: 0px 10px 10px rgb(0 0 0 / 20%), 0px 20px 40px rgb(0 0 0 / 20%);
+    box-shadow: 0px 10px 10px rgb(0 0 0 / 20%), 0px 20px 40px rgb(0 0 0 / 20%);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-radius: 2rem;
+}
+.form-section form input, .form-section form textarea {
+    margin: 2rem;
+}
+.form-section form textarea {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 2rem;
 }

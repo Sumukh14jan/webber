@@ -1,0 +1,140 @@
+
+
+@keyframes animate-success-msg{
+  0%{
+    opacity: 0;
+    transform: scale(0);
+  }
+  25%{
+    opacity: 0.2;
+    transform: scale(0.5);
+  }
+  40%{
+    opacity: 0.3;
+    transform: scale(1.2);
+  }
+  65%{
+    opacity: 0.6;
+    transform: scale(0.8);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.container{
+  /*position: relative;*/
+  border-radius: 10px;
+  /*overflow: hidden;*/
+  height:400px;
+  width:600px;
+  /*background: white;*/
+  transition: all 0.2s ease-out;
+}
+
+.animate-cont{
+  transform: scaleY(0.01);
+  transition: all 0.2s ease-in-out;
+}
+.animate-cont #button{
+  visibility: hidden;
+}
+
+.progress-bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  background: #00433e;
+  height: 100%;
+  width: 0%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in;
+}
+.progress-bar.active{
+  width: 100%;
+  transition: width 1s 0.2s ease-in;
+}
+.progress-bar.disapear{
+  opacity: 0;
+  transition: all 0.2s ease-in;
+}
+
+.btn-dv{
+  display: flex;
+  margin-top: 50%;
+  justify-content: center;
+}
+
+button{
+  background: white;
+  border:3px solid;
+  padding: 10px 30px;
+  font-size:20px;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+  transition:all .2s ease-out;
+}
+
+#button{
+  color: #1ECD97;
+  border-color: #1ECD97;
+}
+
+#button:hover{
+  color: white;
+  background:#1ECD97;
+  transition:all .2s ease-in;
+}
+
+.success-msg span{
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transition: all 0.2s ease-in;
+}
+
+.success-msg span.active{
+  margin-bottom: 150%;
+  transition: all 0.2s ease-in;
+}
+
+/*.success-btn-dv{*/
+  /*display: flex;*/
+  /*justify-content: center;*/
+/*}*/
+.green{
+  background: #1ECD97;
+}
+.success-msg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.2s ease-in;
+}
+
+.success-msg.active{
+  animation: animate-success-msg 0.4s 0.2s ease-in-out forwards;
+}
+
+#success-btn{
+  margin-top: 20px;
+  color: #1ECD97;
+  color: white;
+  background: #1ECD97;
+  border-color: white;
+}
+
+#success-btn:hover{
+  background: #388E3C;
+  border-color: #388E3C;
+  transition:all 0.2s ease-in;
+}

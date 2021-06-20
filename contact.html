@@ -7,51 +7,79 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico">
     <script src="https://kit-pro.fontawesome.com/releases/v5.10.1/js/pro.min.js" data-auto-fetch-svg></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
     <link
             rel="stylesheet"
             href="animate.css"
     />
-
+    <link rel="stylesheet" href="form-submitting-effect/dist/style.css">
+    <style>.scroll{display: none;}</style>
     <title>Contact| Webber</title>
 </head>
-<header>
-    <nav role="navigation" class="navbar">
-        <ul>
-            <li><a href="https://sumukh14jan.github.io/webber">Home</a></li>
-            <li class="dropdown"><a href="#" class="dropbtn">Projects <i class="fas fa-caret-down"> </i></a>
-                <ul class="dropdown-content">
-                    <li><a href="bmi calculator/index.html">BMI Calculator</a></li>
-                    <li> <a href="tic tac toe/index.html">Tic tac toe</a></li>
-                    <li><a href="krishna vs kansa/index.html">Krishna vs Kansa</a></li>
-                    <li><a href="Ping Pong/index.html">Ping Pong game</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="https://gyansastra.blogspot.com">Another Website</a></li>
+<body>
+<header class="main-head">
+    <nav>
+        <div class="logo">
+            <img src="images/logo.png" alt="LOGO" width="100" height="100">
+            <h1 class="logo-text">WEBBER</h1></div>
+
+        <ul class="nav-links">
+            <li><a href="https://sumukh14jan.github.io/webber">Home <i class="fad fa-home"> </i></a></li>
+            <li><a href="projects.html">Projects <i class="fad fa-project-diagram"> </i></a></li>
+            <li><a href="contact.html" class="active">Contact <i class="fad fa-user"> </i></a></li>
+            <li><a href="https://gyansastra.blogspot.com">Another Website <i class="fad fa-browser"> </i></a></li>
         </ul>
+        <div class="burger">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+        </div>
         <label class="dayNight">
             <input onclick="change_theme();" type="checkbox">
             <div></div>
         </label>
     </nav>
 </header>
-<body>
-<div id="main">
-    <h1>Contact ME</h1>
+<h2 class="center"><span class="scroll"> </span></h2>
+
+<section class="form-section">
+
+        <!--<button type="submit">Submit</button>-->
+
+        <div class="container">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required="">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required="">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <div class="btn-dv">
+                <button id="button">Submit</button>
+            </div>
+            <div class="progress-bar">
+                <div class="success-msg"><span>Message Sent</span>
+                    <div class="success-btn-dv">
+                        <button id="success-btn">Go back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <a href="mailto:sumukh14jan@gmail.com?title=A%20message&message=Hello"><button class="btn btn-primary">Send an email</button></a>
     <script src="script.js"></script>
-</div>
+</section>
 <footer>
+    <h4>Webber &copy;2021</h4>
     <ul>
-        <li><a href="https://sumukh14jan.github.io/webber">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="https://gyansastra.blogspot.com">Another Website</a></li>
     </ul>
-    <div class="right-end">
-        <em>Created by Sumukh Khandelwal </em>
-        <p class="animate__animated animate__pulse animate__infinite">Made with Love <i class="fad fa-heart" style="color: red;"> </i></p>
-        <p>&copy;Webber 2021</p>
-    </div>
+    <em>Created by Sumukh Khandelwal </em>
+    <p class="animate__animated animate__pulse animate__infinite">Made with Love <i class="fad fa-heart" style="color: red;"> </i></p>
+
 </footer>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="form-submitting-effect/dist/script.js"></script>
 </body>
 </html>
