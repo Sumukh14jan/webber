@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Equation Viewer</title>
+<!--  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>-->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    #equationsOutput p {
+      font-size: 18px; /* Increase font size */
+    }
+    
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    80% {
+        transform: scaleY(1.1)
+    }
+    100% {
+        transform: scaleY(1)
+    }
+}
+.dropdown-select {
+    padding: 8px 28px 8px 8px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #ffffff;
+    position: relative;
+}
+.dropdown-select::after {
+    content: '\25BE';
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease; /* Add transition for rotation */
+}
+.dropdown-content {
+    transition: height 0.3s ease;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: max-content;
+    overflow: auto;
+    border: 1px solid #ccc;
+    z-index: 1;
+    animation: growDown 0.3s ease-in-out forwards;
+    transform-origin: top center;
+    /*opacity: 0;*/
+}
+.dropdown.open .dropdown-content {
+    display: block;
+    transition: height 0.3s ease;
+    height: fit-content;
+}
+.dropdown.open .dropdown-select::after {
+    transform: translateY(-50%) rotate(180deg); /* Rotate on open */
+}
+.dropdown-content input[type="text"] {
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    padding: 8px;
+    margin-bottom: 4px;
+}
+.dropdown-content a {
+    color: black;
+    padding: 8px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+  </style>
+</head>
+<body>
+  <h1>Equation Viewer</h1>
+  <div class="dropdown" id="dropdownFrom">
+    <div class="dropdown-select" onclick="toggleDropdown('dropdownFrom')" id="dropdown_from">From</div>
+    <div class="dropdown-content" id="dropdown-content-from">
+      <input type="text" placeholder="Search.." oninput="filterDropdown('dropdownFrom', this)">
+      <a href="#" onclick="selectOption('dropdownFrom', 'Option 1')">Option 12222222222222222222222222222222222</a>
+      <a href="#" onclick="selectOption('dropdownFrom', 'Option 2')">Option 2</a>
+      <a href="#" onclick="selectOption('dropdownFrom', 'Option 3')">Option 3</a>
+    </div>
+  </div>
+
+  <div class="dropdown" id="dropdownTo">
+    <div class="dropdown-select" onclick="toggleDropdown('dropdownTo')" id="dropdown_to">To</div>
+    <div class="dropdown-content" id="dropdown-content-to">
+      <input type="text" placeholder="Search.." oninput="filterDropdown('dropdownTo', this)">
+      <a href="#" onclick="selectOption('dropdownTo', 'Option A')">Option A</a>
+      <a href="#" onclick="selectOption('dropdownTo', 'Option B')">Option B</a>
+      <a href="#" onclick="selectOption('dropdownTo', 'Option C')">Option C</a>
+    </div>
+  </div>
+  <div>
+    <label for="from">From:</label>
+    <select class="from" id="from">
+      <option value="">Select Reagent</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="to">To:</label>
+    <select class="to" id="to">
+      <option value="">Select Product</option>
+    </select>
+  </div>
+
+  <button id="showEquations">Show Equations</button> <br> <br>
+
+  <div id="equationsOutput"></div>
+  <script>
+    // Data Structure: An array of objects to store equations
+    const equations = [
+    { reagent: "X", product: "Y", rtn: "2H + O ->[Heat] H2O" },
+    { reagent: "A", product: "B", rtn: "A + C->B" },
+    { reagent: "X", product: "Z", rtn: "A + C->B" },
+    { reagent: "C", product: "E", rtn: "A + C->B" },
+    { reagent: "B", product: "F", rtn: "A + C->B" }
+    ];
+
+    // Function to find equations based on reagent, product, or both
+    function findEquations(reagent, product) {
+    return equations.filter(equation => {
+    const reagentMatch = !reagent || equation.reagent === reagent;
+    const productMatch = !product || equation.product === product;
+    return reagentMatch && productMatch;
+});
+}
+
+    // Function to render equations to the output div
+    bgcol="dark";
+    function renderEquations(equations) {
+    const outputDiv = document.getElementById("equationsOutput");
+    outputDiv.innerHTML = ""; // Clear previous output
+
+    equations.forEach((equation, index) => {
+    const equationLine = document.createElement("p");
+    equationLine.innerHTML += `${equation.reagent} -> ${equation.product}`;
+    equationLine.innerHTML += `<br>$$\\ce{${equation.rtn}}$$`;
+    outputDiv.appendChild(equationLine);
+
+//     if (index < equations.length - 1) {
+//     const hr = document.createElement("hr");
+//     hr.style.color = "white";
+//     hr.style.background = "black";
+//     outputDiv.appendChild(hr);
+// }
+    equationLine.style.background = "black";
+    equationLine.style.color = "white";
+    // equationLine.style.margin=0;
+});
+
+    // Trigger MathJax to typeset the new content
+    MathJax.typesetPromise();
+}
+
+    // Populate dropdowns with unique reagents and products
+    const uniqueReagents = [...new Set(equations.map(equation => equation.reagent))];
+    const uniqueProducts = [...new Set(equations.map(equation => equation.product))];
+
+    const fromDropdown = document.querySelector("#dropdown-content-from");
+//     uniqueReagents.forEach(reagent => {
+//     const option = document.createElement("option");
+//     option.value = reagent;
+//     option.text = reagent;
+//     fromDropdown.appendChild(option);
+// });
+    uniqueReagents.forEach(reagent => {
+        const option = document.createElement("a");
+        option.href = "#";
+        option.setAttribute("onclick", `selectOption('dropdownFrom', '${reagent}')`);
+        option.text = reagent;
+        fromDropdown.appendChild(option);
+    });
+    const toDropdown = document.querySelector("#dropdown-content-to");
+    uniqueProducts.forEach(product => {
+    const option = document.createElement("a");
+    option.href = "#";
+    option.setAttribute("onclick", `selectOption('dropdownTo', '${product}')`);
+    option.text = product;
+   toDropdown.appendChild(option);
+
+});
+
+    // Event listener for the button
+    let showEquationsButton = document.getElementById("showEquations");
+    showEquationsButton.addEventListener("click", () => {
+    let selectedReagent = document.querySelector("#dropdown_from").innerText;
+
+    if (selectedReagent == "None" || selectedReagent == "From"){selectedReagent=null;}
+    let selectedProduct = document.querySelector("#dropdownTo").innerText;
+    if (selectedProduct == "None" || selectedProduct == "To" ){selectedProduct=null;}
+    const matches = findEquations(selectedReagent, selectedProduct);
+
+    renderEquations(matches);
+});
+    function closeDropdown(){
+        item.parentElement.classList.remove('open');
+    }
+    function toggleDropdown(dropdownId) {
+        const dropdown = document.getElementById(dropdownId);
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
+        const input = dropdownContent.querySelector('input[type="text"]');
+        const dropdowns = document.querySelectorAll('.dropdown-content');
+
+        dropdowns.forEach(function(item) {
+            if (item !== dropdownContent && item.parentElement.classList.contains('open')) {
+                item.parentElement.classList.remove('open');
+            }
+        });
+
+        dropdown.classList.toggle("open");
+
+        // if (!dropdown.classList.contains('open')) {
+        //     input.value = ''; // Clear search on close
+        // }
+    }
+
+    function filterDropdown(dropdownId, input) {
+        const filter = input.value.toUpperCase();
+        const items = document.getElementById(dropdownId).querySelectorAll('.dropdown-content a');
+        let visibleCount = 0;
+
+        for (let i = 0; i < items.length; i++) {
+            const textValue = items[i].textContent || items[i].innerText;
+            if (textValue.toUpperCase().indexOf(filter) > -1) {
+                items[i].style.display = "";
+                visibleCount++;
+            } else {
+                items[i].style.display = "none";
+            }
+        }
+    }
+
+    function selectOption(dropdownId, optionText) {
+        const dropdown = document.getElementById(dropdownId);
+        const dropdownSelect = dropdown.querySelector('.dropdown-select');
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
+        dropdownSelect.textContent = optionText;
+        dropdownContent.parentElement.classList.remove("open");
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-select') && !event.target.matches('.dropdown input[type="text"]')) {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(function(item) {
+                if (item.parentElement.classList.contains('open')) {
+                    item.parentElement.classList.remove('open');
+                }
+            });
+        }
+    }</script>
+</body>
+</html>
