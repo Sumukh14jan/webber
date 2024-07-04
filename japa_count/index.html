@@ -30,6 +30,11 @@
     </div>
 
     <script>
+        const GITHUB_USERNAME = 'Sumukh14jan';
+        const GITHUB_REPO = 'webber';
+        const FILE_PATH = 'numbers.csv';
+        const ACCESS_TOKEN = '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';
+
         const calendar = document.getElementById('calendar');
         const totalSumElem = document.getElementById('totalSum');
         const percentageLeftElem = document.getElementById('percentageLeft');
@@ -65,11 +70,16 @@
         }
 
         function loadNumbers() {
-            const url = 'https://raw.githubusercontent.com/Sumukh14jan/webber/master/japa_count/numbers.csv';
-            fetch(url)
-                .then(response => response.text())
-                .then(text => {
-                    const rows = text.split('\n').slice(1); // Skip header row
+            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/japa_count/${FILE_PATH}`;
+            fetch(url, {
+                headers: {
+                    'Authorization': `token ${ACCESS_TOKEN}`
+                }
+            })
+                .then(response => response.json())
+                .then(file => {
+                    const content = atob(file.content);
+                    const rows = content.split('\n').slice(1); // Skip header row
                     rows.forEach(row => {
                         const [date, number] = row.split(',');
                         if (date && number) {
@@ -85,14 +95,30 @@
 
         function saveData() {
             const csvContent = 'date,number\n' + data.map(row => `${row.date},${row.number}`).join('\n');
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.setAttribute('href', url);
-            a.setAttribute('download', 'numbers.csv');
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            const base64Content = btoa(csvContent);
+            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/japa_count/${FILE_PATH}`;
+
+            fetch(url, {
+                headers: {
+                    'Authorization': `token ${ACCESS_TOKEN}`
+                }
+            })
+                .then(response => response.json())
+                .then(file => {
+                    const sha = file.sha;
+                    fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${ACCESS_TOKEN}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Update numbers.csv',
+                            content: base64Content,
+                            sha: sha
+                        })
+                    });
+                });
         }
 
         loadNumbers();
