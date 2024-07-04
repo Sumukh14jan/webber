@@ -70,7 +70,7 @@
         }
 
         function loadNumbers() {
-            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/japa_count/${FILE_PATH}`;
+            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/${FILE_PATH}`;
             fetch(url, {
                 headers: {
                     'Authorization': `token ${ACCESS_TOKEN}`
@@ -96,7 +96,7 @@
         function saveData() {
             const csvContent = 'date,number\n' + data.map(row => `${row.date},${row.number}`).join('\n');
             const base64Content = btoa(csvContent);
-            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/japa_count/${FILE_PATH}`;
+            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/${FILE_PATH}`;
 
             fetch(url, {
                 headers: {
