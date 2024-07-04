@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Daily Number Tracker</title>
+    <style>
+        .calendar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day {
+            margin: 5px 0;
+        }
+
+        .summary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Daily Number Tracker</h1>
+    <div class="calendar" id="calendar"></div>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="addNumber()">Add Number</button>
+    <div class="summary">
+        <p>Total Sum: <span id="totalSum">0</span></p>
+        <p>Percentage Left: <span id="percentageLeft">0%</span></p>
+    </div>
+
+    <script>
+        const calendar = document.getElementById('calendar');
+        const totalSumElem = document.getElementById('totalSum');
+        const percentageLeftElem = document.getElementById('percentageLeft');
+
+        let totalSum = 0;
+        let data = [];
+
+        function updateSummary() {
+            totalSumElem.textContent = totalSum;
+            const percentageLeft = (totalSum * 100) / 35000000;
+            percentageLeftElem.textContent = `${percentageLeft.toFixed(2)}%`;
+        }
+
+        function addNumber() {
+            const numberInput = document.getElementById('numberInput');
+            const number = Number(numberInput.value);
+            if (!isNaN(number)) {
+                const date = new Date().toISOString().split('T')[0];
+                data.push({ date, number });
+                totalSum += number;
+                updateSummary();
+                displayNumber(date, number);
+                numberInput.value = '';
+                saveData();
+            }
+        }
+
+        function displayNumber(date, number) {
+            const dayDiv = document.createElement('div');
+            dayDiv.classList.add('day');
+            dayDiv.textContent = `${date}: ${number}`;
+            calendar.appendChild(dayDiv);
+        }
+
+        function loadNumbers() {
+            const url = 'https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY/main/numbers.csv';
+            fetch(url)
+                .then(response => response.text())
+                .then(text => {
+                    const rows = text.split('\n').slice(1); // Skip header row
+                    rows.forEach(row => {
+                        const [date, number] = row.split(',');
+                        if (date && number) {
+                            const num = Number(number);
+                            totalSum += num;
+                            displayNumber(date, num);
+                            data.push({ date, number: num });
+                        }
+                    });
+                    updateSummary();
+                });
+        }
+
+        function saveData() {
+            const csvContent = 'date,number\n' + data.map(row => `${row.date},${row.number}`).join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'numbers.csv');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        loadNumbers();
+    </script>
+</body>
+
+</html>
