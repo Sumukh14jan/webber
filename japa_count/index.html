@@ -23,106 +23,50 @@
     <h1>Daily Number Tracker</h1>
     <div class="calendar" id="calendar"></div>
     <input type="number" id="numberInput" placeholder="Enter a number">
-    <button onclick="addNumber()">Add Number</button>
+    <button id="submit">Add Number</button>
     <div class="summary">
         <p>Total Sum: <span id="totalSum">0</span></p>
         <p>Percentage Left: <span id="percentageLeft">0%</span></p>
     </div>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-    <script>
-        const GITHUB_USERNAME = 'Sumukh14jan';
-        const GITHUB_REPO = 'webber';
-        const FILE_PATH = 'numbers.csv';
-        const ACCESS_TOKEN = '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';
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyDzY1qMqoFB1IJqVLeHJK9XjsXvjfeChA4",
+        authDomain: "japa-count1.firebaseapp.com",
+        projectId: "japa-count1",
+        storageBucket: "japa-count1.appspot.com",
+        messagingSenderId: "426312504445",
+        appId: "1:426312504445:web:f48e0e0121ab7009f88d14",
+        measurementId: "G-XTEP8BHMRT"
+    };
 
-        const calendar = document.getElementById('calendar');
-        const totalSumElem = document.getElementById('totalSum');
-        const percentageLeftElem = document.getElementById('percentageLeft');
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
 
-        let totalSum = 0;
-        let data = [];
 
-        function updateSummary() {
-            totalSumElem.textContent = totalSum;
-            const percentageLeft = (totalSum * 100) / 35000000;
-            percentageLeftElem.textContent = `${percentageLeft.toFixed(2)}%`;
-        }
+   document.querySelector("#submit").addEventListener("click", function(e) {
+        const db = getDatabase(app);
+        const count = document.querySelector("#numberInput").value
+        const today = new Date();
+        const toddate = today.toLocaleDateString();
+        const temp = toddate.replaceAll("/",'-')
+        set(ref(db, "user/" + temp), {
 
-        function addNumber() {
-            const numberInput = document.getElementById('numberInput');
-            const number = Number(numberInput.value);
-            if (!isNaN(number)) {
-                const date = new Date().toISOString().split('T')[0];
-                data.push({ date, number });
-                totalSum += number;
-                updateSummary();
-                displayNumber(date, number);
-                numberInput.value = '';
-                saveData();
-            }
-        }
+            date: toddate,
+            japa: count
 
-        function displayNumber(date, number) {
-            const dayDiv = document.createElement('div');
-            dayDiv.classList.add('day');
-            dayDiv.textContent = `${date}: ${number}`;
-            calendar.appendChild(dayDiv);
-        }
+        })
+    })
 
-        function loadNumbers() {
-            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/${FILE_PATH}`;
-            fetch(url, {
-                headers: {
-                    'Authorization': `token ${ACCESS_TOKEN}`
-                }
-            })
-                .then(response => response.json())
-                .then(file => {
-                    const content = atob(file.content);
-                    const rows = content.split('\n').slice(1); // Skip header row
-                    rows.forEach(row => {
-                        const [date, number] = row.split(',');
-                        if (date && number) {
-                            const num = Number(number);
-                            totalSum += num;
-                            displayNumber(date, num);
-                            data.push({ date, number: num });
-                        }
-                    });
-                    updateSummary();
-                });
-        }
+</script>
 
-        function saveData() {
-            const csvContent = 'date,number\n' + data.map(row => `${row.date},${row.number}`).join('\n');
-            const base64Content = btoa(csvContent);
-            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/${FILE_PATH}`;
-
-            fetch(url, {
-                headers: {
-                    'Authorization': `token ${ACCESS_TOKEN}`
-                }
-            })
-                .then(response => response.json())
-                .then(file => {
-                    const sha = file.sha;
-                    fetch(url, {
-                        method: 'PUT',
-                        headers: {
-                            'Authorization': `token ${ACCESS_TOKEN}`,
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            message: 'Update numbers.csv',
-                            content: base64Content,
-                            sha: sha
-                        })
-                    });
-                });
-        }
-
-        loadNumbers();
-    </script>
 </body>
 
 </html>

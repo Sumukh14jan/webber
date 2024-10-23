@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Daily Number Tracker</title>
+    <style>
+        .calendar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day {
+            margin: 5px 0;
+        }
+
+        .summary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Daily Number Tracker</h1>
+    <div class="calendar" id="calendar"></div>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="addNumber()">Add Number</button>
+    <div class="summary">
+        <p>Total Sum: <span id="totalSum">0</span></p>
+        <p>Percentage Left: <span id="percentageLeft">0%</span></p>
+    </div>
+
+    <script>
+        const gApi = "https://script.google.com/macros/s/AKfycbxaBBWf_7dFwH20GWh2Fo760BtWbrDW6fhd3rx-8GIq3E9W8hv8ArhjIvzw96Py1t0IsA/exec";
+
+        const calendar = document.getElementById('calendar');
+        const totalSumElem = document.getElementById('totalSum');
+        const percentageLeftElem = document.getElementById('percentageLeft');
+
+        let totalSum = 0;
+        let data = [];
+
+        function updateSummary() {
+            totalSumElem.textContent = totalSum;
+            const percentageLeft = (totalSum * 100) / 35000000;
+            percentageLeftElem.textContent = `${percentageLeft.toFixed(2)}%`;
+        }
+
+        function addNumber() {
+            const numberInput = document.getElementById('numberInput');
+            const number = Number(numberInput.value);
+            if (!isNaN(number)) {
+                const date = new Date();
+                // if date
+                console.log(data,date.getDate());
+                let date1 = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+                console.log(date1);
+                data.push({ date, number });
+                console.log(data)
+                totalSum += number;
+                updateSummary();
+                displayNumber(date1, number);
+                numberInput.value = '';
+                saveData();
+            }
+        }
+
+        function displayNumber(date, number) {
+            const dayDiv = document.createElement('div');
+            dayDiv.classList.add('day');
+            dayDiv.textContent = `${date}: ${number}`;
+            calendar.appendChild(dayDiv);
+        }
+
+        function loadNumbers() {
+            fetch(gApi).then(response => response.json()).then(file => {
+                    const content = file.data;
+                    console.log(content);
+                    for (let key in content) {
+                        // console.log(`${key}:${content[key]}`);
+                      
+                            // console.log(row)
+                            const [date, number] = [content[key]["date"],content[key]["rounds"]]
+                            console.log(date,number)
+                            if (date && number) {
+                                const num = Number(number);
+                                totalSum += num;
+                                displayNumber(date, num);
+                                data.push({ date, number: num });
+                            }             
+                    }
+                    
+                    updateSummary();
+                });
+        }
+
+        function saveData() {
+            const csvContent = 'date,number\n' + data.map(row => `${row.date},${row.number}`).join('\n');
+            const base64Content = btoa(csvContent);
+            fetch(
+                gApi,
+                {
+                    redirect: "follow",
+                    method: "POST",
+                    body: formDataString,
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                    },
+                }
+            )
+                .then(function (response) {
+                    // Check if the request was successful
+                    if (response) {
+                        return response; // Assuming your script returns JSON response
+                    } else {
+                        throw new Error("Failed to submit the form.");
+                    }
+                })
+        }
+
+        loadNumbers();
+    </script>
+</body>
+
+</html>
