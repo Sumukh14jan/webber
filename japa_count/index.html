@@ -3,6 +3,9 @@
 
 <head>
     <title>Daily Number Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .calendar {
             display: flex;
@@ -17,17 +20,71 @@
             margin-top: 20px;
         }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>Daily Number Tracker</h1>
     <div class="calendar" id="calendar"></div>
-    <input type="number" id="numberInput" placeholder="Enter a number">
+<div class="container">
+    <div class="left">
+        <div class="calendar">
+            <div class="month">
+                <i class="fas fa-angle-left prev"></i>
+                <div class="date">December 2022</div>
+                <i class="fas fa-angle-right next"></i>
+            </div>
+            <div class="weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="days"></div>
+            <div class="goto-today">
+                <div class="goto">
+                    <input type="text" placeholder="mm/yyyy" class="date-input" />
+                    <button class="goto-btn">Go</button>
+                </div>
+                <button class="today-btn">Today</button>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="today-date">
+            <div class="event-day">wed</div>
+            <div class="event-date">12th December 2022</div>
+        </div>
+        <div class="events"></div>
+        <div class="add">    <input type="number" id="numberInput" placeholder="Enter a number">
     <button id="submit">Add Number</button>
     <div class="summary">
         <p>Total Sum: <span id="totalSum">0</span></p>
         <p>Percentage Left: <span id="percentageLeft">0%</span></p>
+    </div></div>
+        <div class="add-event-wrapper">
+            <div class="add-event-header">
+                <div class="title">Add Event</div>
+                <i class="fas fa-times close"></i>
+            </div>
+            <div class="add-event-body">
+                <div class="add-event-input">
+                    <input type="text" placeholder="Event Name" class="event-name">
+                </div>
+            </div>
+            <div class="add-event-footer">
+                <button class="add-event-btn">Add Event</button>
+            </div>
+        </div>
     </div>
+    <!-- <button class="add-event">
+        <i class="fas fa-plus"></i>
+    </button> -->
+</div>
+
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -49,7 +106,20 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-
+    document.addEventListener('DOMContentLoaded',() => {
+                const dbRef = ref(getDatabase());
+                get(child(dbRef, "user/")).then((snapshot) => {
+                   
+                        const val  = Object.values(snapshot.val());
+                    for (const key in val) {
+                        let a = val[key];
+                        let today = new Date();
+                        if (a.date == today.toLocaleDateString()){document.querySelector("#submit").disabled = true;}
+                        document.querySelector("#calendar").innerHTML += `${[a.date]} : ${[a.japa]}`;
+                    }
+                });
+        
+})
 
    document.querySelector("#submit").addEventListener("click", function(e) {
         const db = getDatabase(app);
@@ -66,7 +136,7 @@
     })
 
 </script>
-
+<script src="./script.js"></script>
 </body>
 
 </html>
