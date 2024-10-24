@@ -34,10 +34,11 @@ const months = [
     "November",
     "December",
 ];
-
-const eventsArr = [];
-getEvents();
-
+eventsArr = globalEventData;
+// document.onload = function(){eventsArr = globalEventData;}
+// eventsArr = [];
+// vents();
+// console.log(eventsArr);
 function initCalendar() {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
@@ -118,7 +119,9 @@ function nextMonth() {
 prev.addEventListener("click", prevMonth);
 next.addEventListener("click", nextMonth);
 
-initCalendar();
+initCalendar()
+setTimeout(initCalendar,1000);
+setTimeout(initCalendar, 2000);
 
 
 function addListner() {
@@ -159,7 +162,9 @@ function addListner() {
                 }, 100);
             } else {
                 e.target.classList.add("active");
-            }
+            };
+            dinak = `${document.querySelector(".active").innerHTML}/${month + 1}/${year}`;
+            if (dates.includes(`${document.querySelector(".active").innerHTML}/${month + 1}/${year}`)) {document.querySelector("#submit").disabled = true; } else { document.querySelector("#submit").disabled = false;}
         });
     });
 }
@@ -168,6 +173,7 @@ todayBtn.addEventListener("click", () => {
     today = new Date();
     month = today.getMonth();
     year = today.getFullYear();
+    if (dates.includes( today.toLocaleDateString())) { document.querySelector("#submit").disabled = true; } else { document.querySelector("#submit").disabled = false; }
     initCalendar();
 });
 
@@ -240,13 +246,13 @@ function updateEvents(date) {
 }
 
 
-// addEventBtn.addEventListener("click", () => {
-//     addEventWrapper.classList.toggle("active");
-// });
+addEventBtn.addEventListener("click", () => {
+    addEventWrapper.classList.toggle("active");
+});
 
-// addEventCloseBtn.addEventListener("click", () => {
-//     addEventWrapper.classList.remove("active");
-// });
+addEventCloseBtn.addEventListener("click", () => {
+    addEventWrapper.classList.remove("active");
+});
 
 document.addEventListener("click", (e) => {
     if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
@@ -259,13 +265,8 @@ addEventTitle.addEventListener("input", (e) => {
 });
 
 
-addEventSubmit.addEventListener("click", () => {
-    const eventTitle = addEventTitle.value;
-    if (eventTitle === "") {
-        alert("Please fill in the event name");
-        return;
-    }
-
+function trs() {
+    const eventTitle = document.querySelector("#numberInput").value;
     const newEvent = {
         title: eventTitle
     };
@@ -300,7 +301,7 @@ addEventSubmit.addEventListener("click", () => {
     if (!activeDayEl.classList.contains("event")) {
         activeDayEl.classList.add("event");
     }
-});
+};
 
 eventsContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("event")) {
@@ -335,9 +336,20 @@ function saveEvents() {
     localStorage.setItem("events", JSON.stringify(eventsArr));
 }
 
-function getEvents() {
-    if (localStorage.getItem("events") === null) {
-        return;
-    }
-    eventsArr.push(...JSON.parse(localStorage.getItem("events")));
-}
+
+// function arr(day) {
+//     console.log("HI");
+//     let tgs = day.split("/")
+//     eventsArr.push({
+
+//         day:parseInt(tgs[0]),
+//         month:parseInt(tgs[1]),
+//         year:parseInt(tgs[2]),
+//         events:[{
+//             title: parseInt(document.querySelector("#numberInput").value)
+//         }]
+
+//     });
+//     updateEvents();
+// }
+

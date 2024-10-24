@@ -59,8 +59,8 @@
             <div class="event-date">12th December 2022</div>
         </div>
         <div class="events"></div>
-        <div class="add">    <input type="number" id="numberInput" placeholder="Enter a number">
-    <button id="submit">Add Number</button>
+        <div class="add login-box">   <form action=""><div class="user-box"> <input type="number" id="numberInput" placeholder="Enter a number"><label>Rounds Here</label></div>
+    <button id="submit" class="button-28">Chant</button></form>
     <div class="summary">
         <p>Total Sum: <span id="totalSum">0</span></p>
         <p>Percentage Left: <span id="percentageLeft">0%</span></p>
@@ -80,11 +80,11 @@
             </div>
         </div>
     </div>
-    <!-- <button class="add-event">
+    <button class="add-event" style="display: none;">
         <i class="fas fa-plus"></i>
-    </button> -->
+    </button>
 </div>
-
+<script>let globalEventData = [];let dates= [];let dinak = '';</script>
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -103,36 +103,58 @@
         appId: "1:426312504445:web:f48e0e0121ab7009f88d14",
         measurementId: "G-XTEP8BHMRT"
     };
-
+    
+    function ret(e){window.a = e;console.log(window.a); return e;}
     // Initialize Firebase
+   document.addEventListener("DOMContentLoaded",()=>{
     const app = initializeApp(firebaseConfig);
-    document.addEventListener('DOMContentLoaded',() => {
-                const dbRef = ref(getDatabase());
-                get(child(dbRef, "user/")).then((snapshot) => {
-                   
-                        const val  = Object.values(snapshot.val());
-                    for (const key in val) {
-                        let a = val[key];
-                        let today = new Date();
-                        if (a.date == today.toLocaleDateString()){document.querySelector("#submit").disabled = true;}
-                        document.querySelector("#calendar").innerHTML += `${[a.date]} : ${[a.japa]}`;
-                    }
-                });
-        
-})
 
+            const dbRef = ref(getDatabase());
+            get(child(dbRef, "user/")).then((snapshot) => {
+
+                const val = Object.values(snapshot.val());
+                const t = new Date();
+                for (const key in val) {
+                    let a = val[key];
+                    if (a.date == t.toLocaleDateString()) { document.querySelector("#submit").disabled = true; } else { document.querySelector("#submit").disabled = false; }
+                    let today = a.date.split("/");
+                    dates.push(a.date);
+                    globalEventData.push(
+                        {
+                            day: parseInt(today[0]),
+                            month: parseInt(today[1]),
+                            year: parseInt(today[2]),
+                            events: [{
+                                title: parseInt(a.japa)
+                            }]
+                        }
+                    )
+                    // if (a.date == today.toLocaleDateString()){document.querySelector("#submit").disabled = true;}
+                    // document.querySelector("#calendar").innerHTML += `${[a.date]} : ${[a.japa]}`;
+                };
+            })})
+            console.log(globalEventData);
+            // console.log()
+// console.log(eventsArr)
    document.querySelector("#submit").addEventListener("click", function(e) {
-        const db = getDatabase(app);
+    if (document.querySelector("#numberInput").value ==''){alert("Didn't you chanted?");return;}
+        const app1 = initializeApp(firebaseConfig);
+
+        const db = getDatabase(app1);
         const count = document.querySelector("#numberInput").value
-        const today = new Date();
-        const toddate = today.toLocaleDateString();
-        const temp = toddate.replaceAll("/",'-')
+        let toddate = dinak;
+        console.log(toddate)
+        let tod = new Date();
+        if(toddate == ''){toddate = tod.toLocaleDateString();}
+        const temp = toddate.replaceAll("/",'-');
         set(ref(db, "user/" + temp), {
 
             date: toddate,
             japa: count
 
-        })
+        });
+        trs();
+
     })
 
 </script>
