@@ -706,4 +706,4 @@ body {
     box-shadow: none;
     transform: translateY(0);
 }
-html{overflow: hidden;}
+html{overflow: scroll;}
